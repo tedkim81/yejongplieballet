@@ -1,0 +1,686 @@
+{% load static from staticfiles %}
+{% load tags %}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width"/>
+  <title>YEJONG PLIE BALLET</title>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=PFk4_yg96tmkviyKL7rT&submodules=geocoder"></script>
+  <style type="text/css">
+  html, body {
+    height: 100%;
+  }
+  .no-margin {
+    margin: 0;
+  }
+  .no-padding {
+    padding: 0;
+  }
+  .bg-layer {
+    width: 100%; height: 100%; position: fixed; left: 0; top: 0; background: url('{% static 'img/main_img1.jpg' %}') no-repeat center top; background-size: auto 100%;
+  }
+  .main-layer {
+    width: 100%; display: none;
+  }
+  .intro-blank {
+    background-color: #fcfcfc; opacity: 0.7;
+  }
+  .btn {
+    background-color: #d2bb91; color: white;
+  }
+  .btn span {
+    padding-right: 30px;
+  }
+  .section-title-teachers, .section-title-timetable, .section-title-location, .section-title-community, .section-title-gallery {
+    width: 100%; height: 50px; line-height: 50px; background-color: #f5f5f5; border-bottom: 1px solid #ddd; color: #555; font-size: 20px; text-align: center; clear: both; position: relative;
+  }
+  .section-title-teachers {
+    z-index: 100;
+  }
+  .teachers {
+    z-index: 99;
+  }
+  .section-title-timetable {
+    z-index: 200;
+  }
+  .timetable {
+    z-index: 199;
+  }
+  .section-title-location {
+    z-index: 300;
+  }
+  .location {
+    z-index: 299;
+  }
+  .section-title-community {
+    z-index: 400;
+  }
+  .community {
+    z-index: 399;
+  }
+  .section-title-gallery {
+    z-index: 500;
+  }
+  .gallery {
+    z-index: 499;
+  }
+  .section-teachers, .section-timetable, .section-location, .section-community, .section-gallery {
+    overflow-y: hidden;
+  }
+  .teacher-info {
+    padding: 15px; position: relative;
+  }
+  .teacher-img-wrap {
+    width: 150px; position: absolute;
+  }
+  .teacher-img {
+    width: 150px; height: 150px; border-radius: 75px;
+  }
+  .teacher-name {
+    width: 150px; text-align: center; padding-top: 30px; margin-top: -10px; font-size: 16px; color: #555; background-color: white;
+  }
+  .teacher-text {
+    padding-left: 170px;
+  }
+  .teacher-text div {
+    font-size: 15px;
+    font-weight: bold;
+    color: #ab9375;
+  }
+  .teacher-text ul {
+    padding-left: 30px;
+  }
+  .bi-layer {
+    position: fixed; left: 0; top: 0; width: 100%; height: 100%; display: none; z-index: 1000; border-bottom: 1px solid #ddd;
+  }
+  .bi-bg {
+    position: absolute; width: 100%; height: 100%; background-color: #e0d2b9; opacity: 0;
+  }
+  .bi {
+    width: 250px; height: 250px; position: absolute; opacity: 0.9;
+  }
+  .bi-title {
+    font-size: 30px; font-weight: bold; color: #555; position: absolute; width: 250px; text-align: center;
+  }
+  .menu-layer {
+    position: fixed; left: 0; top: 0; width: 100%; z-index: 1000;
+  }
+  .menu-modal {
+    position: absolute; width: 100%; background-color: black; opacity: 0.8; display: none;
+  }
+  .btn-menu {
+    width: 40px; height: 40px; position: absolute; top: 5px; right: 10px; z-index: 1100; display: block; text-align: center;
+  }
+  .btn-menu-open {
+    width: 26px; margin-top: 8px;
+  }
+  .btn-menu-close {
+    width: 22px; margin-top: 8px; display: none;
+  }
+  .btn-menus {
+    width: 60%; position: absolute; top: 44px; right: -60%; z-index: 1100; background-color: white;
+  }
+  .btn-menus div {
+    height: 50px; line-height: 50px; text-align: center; border-bottom: 1px solid #ddd;
+  }
+  .timetable {
+    position: relative; width: 100%; background-color: white;
+  }
+  .timetable-header-wrap {
+    width: 100%; height: 90px; clear: both; position: relative; z-index: 250;
+  }
+  .timetable-table {
+    position: relative; height: 840px;
+  }
+  .timetable-times-wrap {
+    width: 100%; height: 40px; background-color: white; overflow-x: auto;
+  }
+  .timetable-times-wrap::-webkit-scrollbar {
+    display: none;
+  }
+  .timetable-times {
+    width: 1040px; height: 100%;
+  }
+  .timetable-times div {
+    width: 90px;
+    height: 100%;
+    line-height: 40px;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+  }
+  .timetable-times div:first-child {
+    width: 50px;
+  }
+  .timetable-days {
+    position: absolute; left: 0; background-color: white; width: 50px;
+  }
+  .timetable-days div {
+    width: 50px; height: 120px; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; text-align: center; line-height: 120px; vertical-align: middle; background-color: white;
+  }
+  .timetable-body-wrap {
+    width: 100%; position: absolute; padding-left: 50px; overflow-x: auto;
+  }
+  .timetable-body {
+    width: 990px;
+  }
+  .timetable-body div {
+    width: 100%; height: 40px; border-bottom: 1px solid #ddd; position: relative;
+  }
+  .timetable-body div div {
+    display: inline-block; width: 100px; height: 40px; text-align: center; padding-top: 14px; font-size: 11px; line-height: 11px; position: absolute; top: 0;
+  }
+  .timetable-notice {
+    padding: 15px 15px 15px 30px; margin: 0; background-color: white;
+  }
+  .location {
+    width: 100%; position: relative; background-color: white; padding: 0 15px 15px 15px;
+  }
+  .location .location-title {
+    font-size: 16px; font-weight: bold; padding-top: 15px; color: #ab9375;
+  }
+  .location .location-text {
+    height: 40px; padding: 0 10px;
+  }
+  .location .address-img {
+    width: 100%; border: 1px solid #ddd; margin-top: 10px;
+  }
+  .map-wrap {
+    width: 100%; height: 360px; border: 1px solid #ddd; margin-top: 10px; position: relative;
+  }
+  .map-wrap #map {
+    width: 100%; height: 100%;
+  }
+  .map-wrap .scroll-area {
+    width: 25%; height: 100%; position: absolute; top: 0; right: 0; background-color: rgba(255, 255, 255, 0.8); padding-top: 150px; padding-left: 10px; padding-right: 10px; font-size: 12px;
+  }
+  .inmap {
+    padding: 15px;
+  }
+  .inmap .location-text {
+    height: 20px;
+  }
+  .inmap .btn {
+    margin-left: 10px;
+  }
+  .community {
+    width: 100%; padding-top: 15px; padding-bottom: 15px; position: relative; background-color: white;
+  }
+  .community .col-xs-12 {
+    margin-top: 15px;
+    padding: 0;
+  }
+  .community .button-box {
+    border: 1px solid #ddd;
+    padding: 15px;
+  }
+  .community .btn {
+    width: 100%; height: 50px; color: white; margin-top: 15px;
+  }
+  .btn-naver img {
+    width: 16px;
+    margin-right: 10px;
+  }
+  .btn-instagram img {
+    width: 26px;
+    margin-right: 10px;
+  }
+  .btn-facebook img {
+    width: 30px;
+  }
+  .gallery {
+    width: 100%; position: relative; clear: both; background-color: white;
+  }
+  .gallery .container {
+    padding: 0 15px;
+  }
+  .gallery .col-xs-12 {
+    padding: 0;
+    margin: 0;
+  }
+  .gallery img {
+    width: 100%;
+    margin-top: 15px;
+  }
+  .footer {
+    color: white; background-color: #404042; padding-top: 20px; padding-bottom: 20px; margin-top: 30px;
+  }
+  .footer-text {
+    padding: 5px;
+  }
+  @media all and (min-width:768px) {
+    .btn-menu {
+      display: none;
+    }
+    .btn-menus {
+      width: 100%; text-align: right; position: absolute; top: 0; z-index: 1100; background-color: transparent; display: block;
+    }
+    .btn-menus div {
+      display: inline-block;
+      height: 50px;
+      text-align: center;
+      line-height: 50px;
+      vertical-align: middle;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: bold;
+      color: #555;
+      margin: 0 15px;
+      border-bottom: none;
+    }
+    .teachers, .timetable-times-wrap, .timetable, .location, .community, .gallery {
+      width: 1040px;
+      margin: auto;
+    }
+    .teacher-img-wrap {
+      width: 200px;
+    }
+    .teacher-img {
+      width: 200px; height: 200px; border-radius: 100px;
+    }
+    .teacher-name {
+      width: 200px;
+    }
+    .teacher-text {
+      padding-left: 280px;
+    }
+    .timetable-times-wrap, .timetable-table {
+      border-left: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+    }
+    .location .address-img {
+      width: 500px;
+      height: 500px;
+      margin-right: 10px;
+      float: left;
+    }
+    .map-wrap {
+      width: 500px;
+      height: 500px;
+      margin-top: 10px;
+      display: inline-block;
+    }
+    .map-wrap .scroll-area {
+      display: none;
+    }
+    .community .col-xs-12 {
+      width: 33%;
+    }
+    .community .button-box {
+      margin-left: 7px;
+      margin-right: 7px;
+    }
+    .gallery .col-xs-12 {
+      width: 33.3%;
+      padding: 0 7px;
+    }
+    .footer .container {
+      padding-left: 0;
+      padding-right: 0;
+      margin-left: 0;
+      margin-right: 0;
+      width: 1040px;
+      margin: auto;
+    }
+  }
+  .btn-menus .active {
+    color: #927f67;
+    border-bottom: 4px solid #927f67;
+  }
+  </style>
+  <script>
+  $(document).ready(function() {
+    $(".main-layer").show();
+    $(".bi-layer").show();
+    var windowHeight = $(window).height();
+    var windowWidth = $(window).width();
+    $(".bg-layer-wrap").height(windowHeight);
+    $(".intro-blank").height(windowHeight);
+    $(".menu-modal").height(windowHeight);
+    var biSizeInit = $(".bi").width();
+    var biTopInit = (windowHeight - biSizeInit) / 2 - 50;
+    var biLeftInit = (windowWidth - biSizeInit) / 2;
+    $(".bi").css({"left":biLeftInit+"px", "top":biTopInit+"px"});
+    var biTitleTopInit = biTopInit + biSizeInit + 20;
+    $(".bi-title").css({"left":biLeftInit+"px", "top":biTitleTopInit+"px"});
+    var biTitleFontSizeInit = parseInt($(".bi-title").css("font-size"));
+    var isMobile = ($(".btn-menu").css("display") == "block");
+    var marginLeft = parseInt($(".teachers").css("margin-left"));
+    if (!isMobile) {
+      $(".btn-menus").css({"right":marginLeft+"px"});
+    }
+    
+    // 각 섹션별로 자동 스크롤 시키기 위한 scrollTop 정보
+    var sectionScrollInfo = {};
+    var classNames = [
+        [".section-title-teachers", ".teachers", ".btn-menu-teachers"],
+        [".timetable-header-wrap", ".timetable", ".btn-menu-timetable"],
+        [".section-title-location", ".location", ".btn-menu-location"],
+        [".section-title-community", ".community", ".btn-menu-community"],
+        [".section-title-gallery", ".gallery-wrap", ".btn-menu-gallery"]
+      ];
+    var tmpScrollTop = $(".intro-blank").height() - 50;
+    classNames.forEach(function(classNameSet) {
+      sectionScrollInfo[classNameSet[0]] = tmpScrollTop;
+      tmpScrollTop += $(classNameSet[0]).height() + parseInt($(classNameSet[1]).css("height"));
+    });
+
+    function setIntroHeight(introHeight) {
+      $(".bg-layer").height(introHeight+"px");
+      $(".bi-layer").height(introHeight+"px");
+      var tmpVal = (windowHeight - introHeight) / (windowHeight - 50);
+      var biSize = biSizeInit - (tmpVal * (biSizeInit - 40));
+      var biTop = biTopInit - (tmpVal * (biTopInit - 5));
+      var biLeft = biLeftInit - (tmpVal * (biLeftInit - 15 - marginLeft));
+      $(".bi").css({"width":biSize+"px", "height":biSize+"px", "top":biTop+"px", "left":biLeft+"px"});
+      $(".bi-bg").css({"height":introHeight+"px", "opacity":tmpVal});
+      var biTitleTop = biTitleTopInit - (tmpVal * (biTitleTopInit - 10));
+      var biTitleFontSize = biTitleFontSizeInit - (tmpVal * (biTitleFontSizeInit - 20));
+      if (isMobile) {
+        $(".bi-title").css({"top":biTitleTop+"px", "font-size":biTitleFontSize});
+      } else {
+        $(".bi-title").css({"top":biTitleTop+"px", "font-size":biTitleFontSize, "left":biLeft+"px"});
+      }
+    }
+
+    var onScrollFunc = function() {
+      // 인트로 부분 애니메이션 처리
+      var scrollTop = $(window).scrollTop();
+      var introHeight = windowHeight - scrollTop;
+      if (introHeight < 50) {
+        introHeight = 50;
+      }
+      setIntroHeight(introHeight);
+
+      // 섹션 타이틀 영역 상단 고정 기능
+      var selectedBtnMenuClass = null;
+      classNames.forEach(function(classNameSet) {
+        var headerHeight = $(classNameSet[0]).height();
+        var compareScrollTop = sectionScrollInfo[classNameSet[0]];
+        if (!isMobile) {
+          compareScrollTop += 50;
+        }
+        $(classNameSet[2]).removeClass("active");
+        if (scrollTop >= compareScrollTop) {
+          if (isMobile) {
+            $(classNameSet[0]).css({"position":"fixed", "top":"50px"});
+          } else {
+            $(classNameSet[0]).css({"position":"fixed", "top":"0"});
+            selectedBtnMenuClass = classNameSet[2];
+          }
+          $(classNameSet[1]).css({"margin-top":headerHeight+"px"});
+        } else {
+          $(classNameSet[0]).css({"position":"relative", "top":"0"});
+          $(classNameSet[1]).css({"margin-top":"0"});
+        }
+      });
+      if (selectedBtnMenuClass) {
+        $(selectedBtnMenuClass).addClass("active");
+      }
+
+      // 강사 소개의 강사 이미지 상단 고정 기능
+      var tmpHeight = $(".intro-blank").height();
+      $(".teacher-info").each(function(i, element) {
+        if (scrollTop >= tmpHeight - 50) {
+          $(element).find(".teacher-img-wrap").css({"position":"fixed", "top":"115px"});
+        } else {
+          $(element).find(".teacher-img-wrap").css({"position":"absolute", "top":"15px"});
+        }
+        tmpHeight += $(element).height() + 35;
+      });
+    };
+    $(window).scroll(onScrollFunc);
+    
+    // 시간표 횡스크롤 2단 스크롤 sync
+    $(".timetable-body-wrap").scroll(function() {
+      $(".timetable-times-wrap").scrollLeft($(".timetable-body-wrap").scrollLeft());
+    });
+    $(".timetable-times-wrap").scroll(function() {
+      $(".timetable-body-wrap").scrollLeft($(".timetable-times-wrap").scrollLeft());
+    });
+
+    // 모바일 시간표에서는 횡으로 중간쯤 pre scroll
+    if (isMobile) {
+      var preScrolled = 90 * 4 - 20;
+      $(".timetable-times-wrap").scrollLeft(preScrolled);
+      $(".timetable-body-wrap").scrollLeft(preScrolled);
+    } 
+
+    // 시간표 내용 채우기
+    {% for tt in timetables %}
+    $(".timetable-{{ tt.day_of_week }}-{{ tt.class_room }}").append("<div style='background-color:{{ tt.color }}; left:{{ tt.get_item_left }}px; width:{{ tt.get_item_width }}px;'>{{ tt.name }}</div>");
+    {% endfor %}
+
+    // 메뉴 버튼
+    function moveToScroll(scrollTop) {
+      if (isMobile) {
+        hideMenu();
+      } else {
+        scrollTop += 50;
+      }
+      $("html, body").animate({"scrollTop":scrollTop}, 200);
+    }
+    function showMenu() {
+      isShowMenu = true;
+      $(".btn-menu").css({"background-color":"white"});
+      $(".btn-menu-open").hide();
+      $(".btn-menu-close").show();
+      $(".menu-modal").fadeIn();
+      $(".btn-menus").animate({"right":0}, 200);
+    }
+    function hideMenu() {
+      isShowMenu = false;
+      $(".btn-menu").css({"background-color":"transparent"});
+      $(".btn-menu-open").show();
+      $(".btn-menu-close").hide();
+      $(".menu-modal").fadeOut();
+      $(".btn-menus").animate({"right":"-60%"}, 200);
+    }
+    var isShowMenu = false;
+    $(".btn-menu").click(function() {
+      if (isShowMenu) {
+        hideMenu();
+      } else {
+        showMenu();
+      }
+    });
+    $(".menu-modal").click(function() {
+      hideMenu();
+    });
+    $(".btn-menu-teachers").click(function() {
+      moveToScroll(sectionScrollInfo[".section-title-teachers"]);
+    });
+    $(".btn-menu-timetable").click(function() {
+      moveToScroll(sectionScrollInfo[".timetable-header-wrap"]);
+    });
+    $(".btn-menu-location").click(function() {
+      moveToScroll(sectionScrollInfo[".section-title-location"]);
+    });
+    $(".btn-menu-community").click(function() {
+      moveToScroll(sectionScrollInfo[".section-title-community"]);
+    });
+    $(".btn-menu-gallery").click(function() {
+      moveToScroll(sectionScrollInfo[".section-title-gallery"]);
+    });
+
+    // 네이버 지도 출력
+    var map = new naver.maps.Map('map');
+    var myaddr = new naver.maps.Point(127.1120501, 37.3975112);
+    map.setCenter(myaddr);
+    // 마커 표시
+    var marker = new naver.maps.Marker({
+      position: myaddr,
+      map: map
+    });
+    // 마커 클릭 이벤트 처리
+    naver.maps.Event.addListener(marker, "click", function(e) {
+      if (infowindow.getMap()) {
+          infowindow.close();
+      } else {
+          infowindow.open(map, marker);
+      }
+    });
+    // 마크 클릭시 인포윈도우 오픈
+    var infowindow = new naver.maps.InfoWindow({
+        content: '<div class="inmap"><h4>예종 플리에 발레</h4><div class="location-title">주소</div><div class="location-text">경기도 성남시 분당구 삼평동 660 골드타워 4층</div><a href="#" class="btn btn-info">지도 전체 화면</a><div class="location-title">연락처</div><div class="location-text">031-8017-8651</div></div>'
+    });
+  });
+  </script>
+</head>
+<body>
+  <div class="bg-layer"></div>
+  <div class="main-layer">
+    <div class="intro-blank"></div>
+    <div class="section-teachers">
+      <div class="section-title-teachers">강사 소개</div>
+      <div class="teachers">
+      {% for teacher in teachers %}
+        <div class="teacher-info">
+          <div class="teacher-img-wrap">
+            <img class="teacher-img" src="{{ teacher.profile_image.url }}" />
+            <div class="teacher-name">{{ teacher.name }}</div>
+          </div>
+          <div class="teacher-text">
+            {{ teacher.introduce|safe }}
+          </div>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+    <div class="section-timetable">
+      <div class="timetable-header-wrap">
+        <div class="section-title-timetable">수업 시간표</div>
+        <div class="timetable-times-wrap">
+          <div class="timetable-times">
+            <div></div><div>11시</div><div>12시</div><div>1시</div><div>2시</div><div>3시</div><div>4시</div><div>5시</div><div>6시</div><div>7시</div><div>8시</div><div>9시</div>
+          </div>
+        </div>
+      </div>
+      <div class="timetable">
+        <div class="timetable-table">
+          <div class="timetable-body-wrap">
+            <div class="timetable-body">
+              <div class="timetable-1-1"></div><div class="timetable-1-2"></div><div class="timetable-1-3"></div>
+              <div class="timetable-2-1"></div><div class="timetable-2-2"></div><div class="timetable-2-3"></div>
+              <div class="timetable-3-1"></div><div class="timetable-3-2"></div><div class="timetable-3-3"></div>
+              <div class="timetable-4-1"></div><div class="timetable-4-2"></div><div class="timetable-4-3"></div>
+              <div class="timetable-5-1"></div><div class="timetable-5-2"></div><div class="timetable-5-3"></div>
+              <div class="timetable-6-1"></div><div class="timetable-6-2"></div><div class="timetable-6-3"></div>
+              <div class="timetable-7-1"></div><div class="timetable-7-2"></div><div class="timetable-7-3"></div>
+            </div>
+          </div>
+          <div class="timetable-days">
+            <div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div><div>일</div>
+          </div>
+        </div>
+        <ul class="timetable-notice">
+          {{ commoninfo.timetable_text|safe }}
+        </ul>
+      </div>
+    </div>
+    <div class="section-location">
+      <div class="section-title-location">학원 위치 / 연락처</div>
+      <div class="location">
+        <div class="location-title">주소</div>
+        <span class="location-text">경기도 성남시 분당구 삼평동 660 골드타워 4층</span>
+        <a href="#" class="btn">지도</a>
+        <div class="location-title">연락처</div>
+        <span class="location-text">031-8017-8651</span>
+        <a href="tel:03180178651" class="btn">전화걸기</a>
+        <div class="location-title">약도 / 지도</div>
+        <img class="address-img" src="{% static 'img/address1.jpg' %}" />
+        <div class="map-wrap">
+          <div id="map"></div>
+          <div class="scroll-area">여기에서 화면을 스크롤 하세요.</div>
+        </div>
+      </div>
+    </div>
+    <div class="section-community">
+      <div class="section-title-community">커뮤니티 / SNS</div>
+      <div class="community container">
+        <div>{{ commoninfo.community_text }}</div>
+        <div class="buttons">
+          <div class="col-xs-12">
+            <div class="button-box">
+              <div>{{ commoninfo.naver_text }}</div>
+              <button class="btn btn-naver"><img src="{% static 'img/icon_naver.png' %}" /><span>네이버 카페로 이동하기</span></button>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <div class="button-box">
+              <div>{{ commoninfo.instagram_text }}</div>
+              <button class="btn btn-instagram"><img src="{% static 'img/icon_instagram.png' %}" /><span>인스타그램으로 이동하기</span></button>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <div class="button-box">
+              <div>{{ commoninfo.facebook_text }}</div>
+              <button class="btn btn-facebook"><img src="{% static 'img/icon_facebook.png' %}" /><span>페이스북으로 이동하기</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-gallery">
+      <div class="section-title-gallery">갤러리</div>
+      <div class="gallery-wrap">
+        <div class="gallery container">
+        {% for galleryarr in galleries %}
+          <div class="col-xs-12">
+          {% for gallery in galleryarr %}
+            <img src="{{ gallery.photo.url }}" />
+          {% endfor %}
+          </div>
+        {% endfor %}
+        </div>
+        <div class="footer">
+          <div class="container">
+            <div class="footer-text">예종 플리에 발레 학원 (Yejong Plie Ballet)</div>
+            <div class="footer-text">대표자: 전효정 | 주소: 경기도 성남시 분당구 삼평동 660 골드타워 4층 | 대표 전화: 031-8017-8651 | FAX: 031-8017-8652 | 사업자 등록번호: 144-90-44314</div>
+            <div class="footer-text">Copyright (c) 2018. Yejong Plie Ballet All Rights Reserved</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bi-layer">
+    <div class="bi-bg"></div>
+    <img class="bi" src="{% static 'img/bi-circle.png' %}" />
+    <div class="bi-title">예종 플리에 발레</div>
+    <!-- <div class="btn-menu">
+      <img class="btn-menu-open" src="{% static 'img/btn_menu.png' %}" />
+      <img class="btn-menu-close" src="{% static 'img/btn_close.png' %}" />
+    </div>
+    <div class="btn-menus-for-pc">
+      <div class="btn-menu-teachers">강사 소개</div>
+      <div class="btn-menu-timetable">수업 시간표</div>
+      <div class="btn-menu-location">학원 위치</div>
+      <div class="btn-menu-community">커뮤니티 / SNS</div>
+      <div class="btn-menu-gallery">갤러리</div>
+    </div> -->
+  </div>
+  <div class="menu-layer">
+    <div class="menu-modal"></div>
+    <div class="btn-menu">
+      <img class="btn-menu-open" src="{% static 'img/btn_menu.png' %}" />
+      <img class="btn-menu-close" src="{% static 'img/btn_close.png' %}" />
+    </div>
+    <div class="btn-menus">
+      <div class="btn-menu-teachers">강사 소개</div>
+      <div class="btn-menu-timetable">수업 시간표</div>
+      <div class="btn-menu-location">학원 위치</div>
+      <div class="btn-menu-community">커뮤니티 / SNS</div>
+      <div class="btn-menu-gallery">갤러리</div>
+    </div>
+  </div>
+</body>
+</html>
