@@ -36,10 +36,16 @@
     background-color: #fcfcfc; opacity: 0.3;
   }
   .btn {
-    background-color: #d2bb91; color: white;
+    background-color: #d2bb91; color: white; position: relative;
+  }
+  .btn:hover {
+    color: #eeeeee;
   }
   .btn span {
     padding-right: 30px;
+  }
+  .btn-default-width {
+    width: 300px;
   }
   .section-title {
     width: 100%; height: 50px; line-height: 50px; background-color: #ffffff; border-bottom: 1px solid #ddd; border-top: 1px solid #ddd; color: #555; font-size: 20px; text-align: center; clear: both; position: relative;
@@ -50,9 +56,11 @@
   .section-title-location { z-index: 300; } .location { z-index: 299; }
   .section-title-community { z-index: 400; } .community { z-index: 399; }
   .section-title-gallery { z-index: 500; } .gallery { z-index: 499; }
-  .section-title-foreigner { z-index: 600; } .foreigner { z-index: 599; }
+  .section-title-foreigner { z-index: 600; } .foreigner-wrap { z-index: 599; }
   .section-container {
     overflow-y: hidden;
+    position: relative;
+    background-color: white;
   }
   .teacher-info {
     padding: 15px; position: relative;
@@ -223,7 +231,7 @@
     width: 100%; padding-top: 15px; padding-bottom: 30px; position: relative; background-color: white;
   }
   .community .community-title {
-    font-size: 16px; font-weight: bold; padding-top: 15px; color: #ab9375;
+    font-size: 16px; font-weight: bold; padding-top: 15px; color: #ab9375; clear: both;
   }
   .community .community-text {
     height: 40px; padding: 0 10px;
@@ -250,6 +258,14 @@
   .btn-facebook img {
     width: 30px;
   }
+  .btn-vdenie img {
+    width: 16px;
+    margin-right: 10px;
+  }
+  .btn-sungnamvallet img {
+    width: 26px;
+    margin-right: 10px;
+  }
   .gallery {
     width: 100%; padding-bottom: 30px; position: relative; clear: both; background-color: white;
   }
@@ -269,6 +285,7 @@
   }
   .foreigner {
     margin-bottom: 30px;
+    font-size: 16px;
   }
   .footer {
     color: white; background-color: #404042; padding-top: 20px; padding-bottom: 20px; margin-top: 30px;
@@ -293,7 +310,7 @@
       font-size: 16px;
       font-weight: bold;
       color: #555;
-      margin: 0 15px;
+      margin: 0 10px;
       border-bottom: none;
     }
     .cont-area {
@@ -388,7 +405,7 @@
           <div class="about-text-2">발레리나를 꿈꾸는 어린 학생들의 기초과정부터 예술학교를 지망하는 전공 학생들의 심화된 학습 그리고 클래식 발레를 통한 체형교정 및 다이어트 효과를 볼 수 있는 성인반까지 클래스가 다른 교육을 경험해 보세요~!</div>
           <br>
           <div class="btn-about-more">
-            <a href="https://m.cafe.naver.com/yejongplie/293" target="_blank" class="btn">예종플리에 발레아카데미 소개 더보기</a>
+            <a href="https://m.cafe.naver.com/yejongplie/293" target="_blank" class="btn btn-default-width">예종플리에 발레아카데미 소개 더보기</a>
           </div>
         </div>
         <div class="clear"></div>
@@ -409,7 +426,7 @@
         </div>
       {% endfor %}
         <div class="text-right">
-          <a href="#" target="_blank" class="btn">강사 정보 더보기</a>
+          <a href="#" target="_blank" class="btn btn-default-width">강사 정보 더보기</a>
         </div>
       </div>
     </div>
@@ -443,7 +460,7 @@
           {{ commoninfo.timetable_text|safe }}
         </ul>
         <div class="btn-timetable-more">
-          <a href="#" target="_blank" class="btn">수업 정보 더보기</a>
+          <a href="#" target="_blank" class="btn btn-default-width">수업 정보 더보기</a>
         </div>
       </div>
     </div>
@@ -464,10 +481,16 @@
     <div class="section-container section-community">
       <div class="section-title section-title-community">CONTACT/SNS</div>
       <div class="cont-area community container">
-        <div class="community-title">연락처</div>
+        <div class="community-title">학원 전화번호</div>
         <span class="community-text">031-8017-8651</span>
         <a href="tel:03180178651" class="btn">전화걸기</a>
-        <div class="community-title">SNS</div>
+        <div class="community-title">상담시간</div>
+        <span class="community-text">10:00 ~ 17:00</span>
+        <div class="community-title">수업시간</div>
+        <span class="community-text">10:00 ~ 17:00</span>
+        <div class="community-title">휴무일</div>
+        <span class="community-text">매월 둘째주 화요일</span>
+        <div class="community-title">커뮤니티</div>
         <div class="community-text">{{ commoninfo.community_text }}</div>
         <div class="buttons">
           <div class="col-xs-12">
@@ -489,6 +512,22 @@
             </div>
           </div>
         </div>
+        <div class="community-title">협력업체</div>
+        <div class="community-text">예종플리에 발레아카데미와 제휴 및 협력 관계에 있는 업체들입니다.</div>
+        <div class="buttons">
+          <div class="col-xs-12">
+            <div class="button-box">
+              <div>각종 발레용품을 저렴한 가격에 구매하실 수 있습니다.</div>
+              <button class="btn btn-vdenie"><img src="{% static 'img/icon_naver.png' %}" /><span>브이데니에로 이동하기</span></button>
+            </div>
+          </div>
+          <div class="col-xs-12">
+            <div class="button-box">
+              <div>학원 원장님들이 주체가 되어 운영중인 성남시티발레단입니다.</div>
+              <button class="btn btn-sungnamvallet"><img src="{% static 'img/icon_instagram.png' %}" /><span>성남시티발레단 홈페이지</span></button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="section-container section-gallery">
@@ -507,10 +546,17 @@
       <div class="section-title section-title-foreigner">FOREIGNER</div>
       <div class="foreigner-wrap">
         <div class="cont-area foreigner container">
-          Hi, guys!! This is the world best ballet institution! Oh, my god, guys. This is real things!
-          Please, beleave me. This is fantastic and amazing. Do you know ballet? The ballet is art.
-          Do you want to know more information about this fantastic institution? Please email to me.
-          The email address is unkyu@naver.com
+          Hi, guys!! <br>
+          This is the world best ballet institution! <br>
+          Oh, my god, guys. This is real things! <br>
+          Please, beleave me. <br>
+          This is fantastic and amazing. <br>
+          Do you know ballet? The ballet is art. <br>
+          Do you want to know more information about this fantastic institution? <br>
+          Please email to me. <br>
+          <br>
+          The email address is <a href="mailto:unkyu@naver.com">unkyu@naver.com</a><br>
+          <br>
           Thank you!!
         </div>
         <div class="footer">
