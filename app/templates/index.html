@@ -573,14 +573,24 @@
         </div>
         <div class="community-title">SNS 바로가기</div>
         <div class="buttons">
-          <button class="btn btn-naver"><img src="{% static 'img/icon_naver.png' %}" /><span>카페</span></button>
-          <button class="btn btn-instagram"><img src="{% static 'img/icon_instagram.png' %}" /><span>인스타그램</span></button>
-          <button class="btn btn-facebook"><img src="{% static 'img/icon_facebook.png' %}" /><span>페이스북</span></button>
+          <a href="https://cafe.naver.com/yejongplie" target="_blank">
+            <button class="btn btn-naver"><img src="{% static 'img/icon_naver.png' %}" /><span>카페</span></button>
+          </a>
+          <a href="https://www.instagram.com/yejongplieballet/" target="_blank">
+            <button class="btn btn-instagram"><img src="{% static 'img/icon_instagram.png' %}" /><span>인스타그램</span></button>
+          </a>
+          <a href="https://www.facebook.com/yejongplieballet.academy/" target="_blank">
+            <button class="btn btn-facebook"><img src="{% static 'img/icon_facebook.png' %}" /><span>페이스북</span></button>
+          </a>
         </div>
         <div class="community-title">협력업체</div>
         <div class="buttons">
-          <button class="btn btn-vdenie"><img src="{% static 'img/icon_naver.png' %}" /><span>브이데니에</span></button>
-          <button class="btn btn-sungnamvallet"><img src="{% static 'img/icon_instagram.png' %}" /><span>성남시티발레단</span></button>
+          <a href="#" target="_blank">
+            <button class="btn btn-vdenie"><img src="{% static 'img/icon_naver.png' %}" /><span>브이데니에</span></button>
+          </a>
+          <a href="#" target="_blank">
+            <button class="btn btn-sungnamvallet"><img src="{% static 'img/icon_instagram.png' %}" /><span>성남시티발레단</span></button>
+          </a>
         </div>
         <!-- <div class="community-title">커뮤니티</div>
         <div class="community-text">{{ commoninfo.community_text }}</div>
@@ -798,7 +808,6 @@
       tmpHeight += $(element).height() + 35;
     });
   };
-  $(window).scroll(onScrollFunc);
   
   // 시간표 횡스크롤 2단 스크롤 sync
   $(".timetable-body-wrap").scroll(function() {
@@ -831,8 +840,10 @@
   });
   {% endfor %}
   var classinfo_intros = {};
+  var classinfo_color = {};
   {% for ci in classinfos %}
   classinfo_intros["{{ ci.id }}"] = `{{ ci.introduce }}`;
+  classinfo_color["{{ ci.id }}"] = `{{ ci.color }}`;
   {% endfor %}
 
   function convertTimeString(raw_time) {
@@ -855,7 +866,7 @@
     var tt_item_width = $(".timetable-times .col-time").eq(0).outerWidth();
     $(".timetable-body div").empty();
     timetables.forEach(function (tt){
-      $(".timetable-"+tt.day_of_week+"-"+tt.class_room).append("<div class='timetable-cell' data-classinfo-id='"+tt.classinfo_id+"' data-name='"+tt.name+"' data-start-time='"+convertTimeString(tt.start_time)+"' data-end-time='"+convertTimeString(tt.end_time)+"' data-toggle='modal' data-target='#yjp-modal' style='background-color:"+tt.color+"; left:"+(tt.item_left*tt_item_width)+"px; width:"+(tt.item_width*tt_item_width)+"px; cursor: pointer;'>"+tt.name+"</div>");
+      $(".timetable-"+tt.day_of_week+"-"+tt.class_room).append("<div class='timetable-cell' data-classinfo-id='"+tt.classinfo_id+"' data-name='"+tt.name+"' data-start-time='"+convertTimeString(tt.start_time)+"' data-end-time='"+convertTimeString(tt.end_time)+"' data-toggle='modal' data-target='#yjp-modal' style='background-color:"+classinfo_color[tt.classinfo_id]+"; left:"+(tt.item_left*tt_item_width)+"px; width:"+(tt.item_width*tt_item_width)+"px; cursor: pointer;'>"+tt.name+"</div>");
     });
   }
   setTimetables();
@@ -928,6 +939,10 @@
   // var infowindow = new naver.maps.InfoWindow({
   //     content: '<div class="inmap"><h4>예종 플리에 발레</h4><div class="location-title">주소</div><div class="location-text">경기도 성남시 분당구 삼평동 660 골드타워 4층</div><a href="#" class="btn btn-info">지도 전체 화면</a><div class="location-title">연락처</div><div class="location-text">031-8017-8651</div></div>'
   // });
+  
+  $(document).ready(function() {
+    $(window).scroll(onScrollFunc);
+  });
   </script>
 </body>
 </html>

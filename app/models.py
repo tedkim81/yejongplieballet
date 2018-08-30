@@ -24,6 +24,8 @@ class ClassInfo(models.Model):
     """ 수업 정보 """
     name = models.CharField(u"수업명", max_length=32)
     introduce = models.TextField(u"소개")
+    color = models.CharField(
+        u"컬러코드", max_length=9, help_text=u"#을 포함한 색상 코드. 예) 빨간색 => #ff0000")
     pub_date = models.DateTimeField(u"등록일", auto_now_add=True)
 
     def __str__(self):
@@ -38,8 +40,6 @@ class Timetable(models.Model):
         u"강의실", choices=configs.CLASS_ROOM.CHOICES)
     start_time = models.FloatField(u"시작시간", help_text=u"11부터 21까지. 오후 3시 30분이면, 15.5")
     end_time = models.FloatField(u"종료시간", help_text=u"11부터 21까지. 예) 오후 3시 30분 => 15.5")
-    color = models.CharField(
-        u"컬러코드", max_length=9, help_text=u"#을 포함한 색상 코드. 예) 빨간색 => #ff0000")
     pub_date = models.DateTimeField(u"등록일", auto_now_add=True)
 
     class Meta:
