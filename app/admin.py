@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.utils.safestring import mark_safe
-from app.models import Teacher, Timetable, CommonInfo, Gallery
+from app.models import Teacher, ClassInfo, Timetable, CommonInfo, Gallery
 
 class TeacherAdmin(admin.ModelAdmin):
     list_display = [
@@ -9,16 +9,31 @@ class TeacherAdmin(admin.ModelAdmin):
         'display_order'
     ]
 
-class TimetableAdmin(admin.ModelAdmin):
+class ClassInfoAdmin(admin.ModelAdmin):
     list_display = [
         'id',
         'name',
+        'introduce'
+    ]
+
+class TimetableAdmin(admin.ModelAdmin):
+    list_display = [
+        'id',
+        'classinfo',
         'day_of_week',
         'class_room',
         'start_time',
         'end_time',
         'get_color'
     ]
+
+    def get_queryset(self, request):
+        queryset = super(TimetableAdmin, self).get_queryset(request)
+        queryset = queryset.select_related('classinfo')
+        return queryset
+
+    def get_classname(self, obj):
+        return obj.classinfo.name
 
     def get_color(self, obj):
         return mark_safe('<div style="color:%s;">%s</div>' % (obj.color, obj.color))
@@ -46,6 +61,7 @@ class GalleryAdmin(admin.ModelAdmin):
     get_photo.short_description = u"사진"
 
 admin.site.register(Teacher, TeacherAdmin)
+admin.site.register(ClassInfo, ClassInfoAdmin)
 admin.site.register(Timetable, TimetableAdmin)
 admin.site.register(CommonInfo, CommonInfoAdmin)
 admin.site.register(Gallery, GalleryAdmin)

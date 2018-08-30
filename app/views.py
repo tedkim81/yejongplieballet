@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from app.models import Teacher, Timetable, CommonInfo, Gallery
+from app.models import Teacher, ClassInfo, Timetable, CommonInfo, Gallery
 
 class IndexView(TemplateView):
     template_name = "index.html"
@@ -12,6 +12,7 @@ class IndexView(TemplateView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['teachers'] = Teacher.objects.all()
         context['timetables'] = Timetable.objects.all()
+        context['classinfos'] = ClassInfo.objects.all()
         context['commoninfo'] = CommonInfo.objects.first()
         gallerylist = Gallery.objects.all()
         galleries = [[],[],[]]

@@ -20,9 +20,18 @@ class Teacher(models.Model):
     class Meta:
         ordering = ['display_order']
 
+class ClassInfo(models.Model):
+    """ 수업 정보 """
+    name = models.CharField(u"수업명", max_length=32)
+    introduce = models.TextField(u"소개")
+    pub_date = models.DateTimeField(u"등록일", auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
 class Timetable(models.Model):
     """ 수업 시간표 """
-    name = models.CharField(u"수업명", max_length=32)
+    classinfo = models.ForeignKey("ClassInfo", on_delete=models.CASCADE, verbose_name=u"수업")
     day_of_week = models.PositiveSmallIntegerField(
         u"요일", choices=configs.DAY_OF_WEEK.CHOICES)
     class_room = models.PositiveSmallIntegerField(
@@ -37,10 +46,10 @@ class Timetable(models.Model):
         ordering = ['day_of_week', 'class_room']
 
     def get_item_left(self):
-        return (self.start_time - 11) * 90;
+        return (self.start_time - 11); # 단위width 곱하는것은 템플릿에서
 
     def get_item_width(self):
-        return (self.end_time - self.start_time) * 90;
+        return (self.end_time - self.start_time); # 단위width 곱하는것은 템플릿에서
 
 class CommonInfo(models.Model):
     """ 일반 정보들 """
