@@ -13,8 +13,13 @@ class ClassInfoAdmin(admin.ModelAdmin):
     list_display = [
         'id',
         'name',
-        'introduce'
+        'introduce',
+        'get_color'
     ]
+
+    def get_color(self, obj):
+        return mark_safe('<div style="color:%s;">%s</div>' % (obj.color, obj.color))
+    get_color.short_description = u"컬러코드"
 
 class TimetableAdmin(admin.ModelAdmin):
     list_display = [
@@ -23,8 +28,7 @@ class TimetableAdmin(admin.ModelAdmin):
         'day_of_week',
         'class_room',
         'start_time',
-        'end_time',
-        'get_color'
+        'end_time'
     ]
 
     def get_queryset(self, request):
@@ -34,10 +38,6 @@ class TimetableAdmin(admin.ModelAdmin):
 
     def get_classname(self, obj):
         return obj.classinfo.name
-
-    def get_color(self, obj):
-        return mark_safe('<div style="color:%s;">%s</div>' % (obj.color, obj.color))
-    get_color.short_description = u"컬러코드"
 
 class CommonInfoAdmin(admin.ModelAdmin):
     list_display = [
