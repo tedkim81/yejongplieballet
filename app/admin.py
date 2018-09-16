@@ -30,6 +30,11 @@ class TimetableAdmin(admin.ModelAdmin):
         'start_time',
         'end_time'
     ]
+    list_filter = [
+        'classinfo',
+        'day_of_week',
+        'class_room'
+    ]
 
     def get_queryset(self, request):
         queryset = super(TimetableAdmin, self).get_queryset(request)

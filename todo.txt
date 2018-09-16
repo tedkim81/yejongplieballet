@@ -1,6 +1,6 @@
 [TODO ver 2]
 
-1. 링크들
+V1. 링크들
 - 선생님 정보 더보기 링크: https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=23%26search.boardtype=I
 - 공지사항: https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=1%26search.boardtype=L
 - 온라인상담실: https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=21%26search.boardtype=Q
@@ -10,7 +10,7 @@
 - 어린이 취미반 https://cafe.naver.com/yejongplie/296
 - 브이데니에 주소 http://www.vdenie.co.kr/ 
 
-2. 시간표상세
+V2. 시간표상세
 Kids : 5세(만4세)이상 취학전 어린이 발레 수업 
 Youth1 : 초등학교 저학년(1~3학년) 어린이 발레 수업
 Youth2 : 초등학교 고학년(4~6학년) 어린이 발레 수업

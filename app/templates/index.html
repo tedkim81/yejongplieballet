@@ -738,10 +738,6 @@
       [".section-title-foreigner", ".foreigner-wrap", ".btn-menu-foreigner"]
     ];
   var tmpScrollTop = $(".intro-blank").height() - 50;
-  classNames.forEach(function(classNameSet) {
-    sectionScrollInfo[classNameSet[0]] = tmpScrollTop;
-    tmpScrollTop += $(classNameSet[0]).height() + parseInt($(classNameSet[1]).css("height"));
-  });
 
   function setIntroHeight(introHeight) {
     $(".bg-layer").height(introHeight+"px");
@@ -854,6 +850,9 @@
     var minute = 0;
     if (splited.length > 1 && splited[1] > 0) {
       minute = 6 * parseInt(splited[1]);
+      if (minute >= 60) {
+        minute /= 10;
+      }
     }
     if (minute > 0) {
       return hour+"시 "+minute+"분";
@@ -949,6 +948,10 @@
   }
   
   $(document).ready(function() {
+    classNames.forEach(function(classNameSet) {
+      sectionScrollInfo[classNameSet[0]] = tmpScrollTop;
+      tmpScrollTop += $(classNameSet[0]).height() + parseInt($(classNameSet[1]).css("height"));
+    });
     $(window).scroll(onScrollFunc);
   });
   </script>
