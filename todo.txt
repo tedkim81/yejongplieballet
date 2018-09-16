@@ -1,3 +1,35 @@
+[TODO ver 2]
+
+1. 링크들
+- 선생님 정보 더보기 링크: https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=23%26search.boardtype=I
+- 공지사항: https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=1%26search.boardtype=L
+- 온라인상담실: https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=21%26search.boardtype=Q
+
+- 전공반 https://cafe.naver.com/yejongplie/295
+- 성인 취미반 https://cafe.naver.com/yejongplie/297
+- 어린이 취미반 https://cafe.naver.com/yejongplie/296
+- 브이데니에 주소 http://www.vdenie.co.kr/ 
+
+2. 시간표상세
+Kids : 5세(만4세)이상 취학전 어린이 발레 수업 
+Youth1 : 초등학교 저학년(1~3학년) 어린이 발레 수업
+Youth2 : 초등학교 고학년(4~6학년) 어린이 발레 수업
+피지컬 : 체형교정, 유연성 및 근력 향상을 위한 심화 수업 (초등 2학년 이상, 비전공/전공 모두 가능)
+예비전공 : 발레 전공 입문 수업 (방문 상담 및 레벨 테스트 필수)
+전공A : 발레 전공 기본 수업 (방문 상담 및 레벨 테스트 필수)
+전공B : 발레 전공 심화 수업 (방문 상담 및 레벨 테스트 필수)
+작품B : 발레 전공 작품 수업 (1:1 개별 지도)
+성인기초 : 발레를 처음 시작하는 성인을 위한 수업
+성인초급 : 발레를 3개월 이상 배운 성인을 위한 수업 
+성인중급 : 발레를 1년 이상 배운 성인을 위한 수업 
+성인작품반 : 취미 발레인을 위한 작품 그룹 수업 (발레 경력 6개월 이상)
+
+
+
+===============================================
+
+[TODO ver 1]
+
 1.시간표
 Vㆍ시간간격좁게
 Vㆍ시간4등분표시

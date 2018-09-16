@@ -230,8 +230,9 @@
   .map-wrap #map {
     width: 100%; height: 100%;
   }
-  .map-wrap .scroll-area {
-    width: 25%; height: 100%; position: absolute; top: 0; right: 0; background-color: rgba(255, 255, 255, 0.8); padding-top: 150px; padding-left: 10px; padding-right: 10px; font-size: 12px;
+  .map-wrap .map-mask {
+    width: 100%; height: 100%; position: absolute; top: 0; right: 0; background-color: rgba(255, 255, 255, 0.8);
+    padding: 30px; text-align: center; line-height: 20px; opacity: 0;
   }
   .inmap {
     padding: 15px;
@@ -385,20 +386,14 @@
       border-left: 1px solid #ddd;
       border-right: 1px solid #ddd;
     }
+    .location .subway-img {
+      width: 330px; height: 330px; margin-right: 10px; float: left;
+    }
     .location .address-img {
-      width: 500px;
-      height: 500px;
-      margin-right: 10px;
-      float: left;
+      width: 330px; height: 330px; margin-right: 10px; float: left;
     }
     .map-wrap {
-      width: 500px;
-      height: 500px;
-      margin-top: 10px;
-      display: inline-block;
-    }
-    .map-wrap .scroll-area {
-      display: none;
+      width: 330px; height: 330px; margin-top: 10px; display: inline-block;
     }
     .community .col-xs-12 {
       width: 33%;
@@ -475,7 +470,7 @@
         </div>
       {% endfor %}
         <div class="text-right">
-          <a href="#" target="_blank" class="btn btn-default-width">강사 정보 더보기</a>
+          <a href="https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=23%26search.boardtype=I" target="_blank" class="btn btn-default-width">강사 정보 더보기</a>
         </div>
       </div>
     </div>
@@ -525,9 +520,9 @@
         <div class="timetable-more">
           <div class="timetable-more-title">수업 내용 및 등록 안내 바로가기</div>
           <div class="timetable-more-btns">
-            <a href="#" target="_blank" class="btn">전공반</a>
-            <a href="#" target="_blank" class="btn">어린이 취미반</a>
-            <a href="#" target="_blank" class="btn">성인 취미반</a>
+            <a href="https://cafe.naver.com/yejongplie/295" target="_blank" class="btn">전공반</a>
+            <a href="https://cafe.naver.com/yejongplie/296" target="_blank" class="btn">어린이 취미반</a>
+            <a href="https://cafe.naver.com/yejongplie/297" target="_blank" class="btn">성인 취미반</a>
           </div>
         </div>
       </div>
@@ -550,11 +545,11 @@
         <div class="location-text">판교역 부근, 아비뉴프랑 건너편의 메디피움 병원 바로 뒷 건물</div>
         <div class="location-text">학원건물 내 주차 가능 (1시간 무료)</div>
         <div class="location-title">약도 / 지도</div>
-        <img class="subway-img" src="{% static 'img/address2.jpg' %}" />
-        <img class="address-img" src="{% static 'img/address3.jpg' %}" />
+        <img class="subway-img" src="{% static 'img/address_subway.jpg' %}" />
+        <img class="address-img" src="{% static 'img/address_street.jpg' %}" />
         <div class="map-wrap">
           <div id="map"></div>
-          <div class="scroll-area">여기에서 화면을 스크롤 하세요.</div>
+          <div class="map-mask"><a href="javascript:hideMapMask();">여기를 클릭하시면,<br>지도를 확대/축소/이동하실 수 있습니다.</a></div>
         </div>
       </div>
     </div>
@@ -568,8 +563,12 @@
         <div class="community-text">오후 2:30-8:00 (월~금)</div>
         <div class="community-title">공지사항/상담실 바로가기</div>
         <div class="buttons">
-          <button class="btn btn-notice">공지사항</button>
-          <button class="btn btn-cs">온라인 상담실</button>
+          <a href="https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=1%26search.boardtype=L" target="_blank">
+            <button class="btn btn-notice">공지사항</button>
+          </a>
+          <a href="https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=21%26search.boardtype=Q" target="_blank">
+            <button class="btn btn-cs">온라인 상담실</button>
+          </a>
         </div>
         <div class="community-title">SNS 바로가기</div>
         <div class="buttons">
@@ -585,11 +584,11 @@
         </div>
         <div class="community-title">협력업체</div>
         <div class="buttons">
-          <a href="#" target="_blank">
-            <button class="btn btn-vdenie"><img src="{% static 'img/icon_naver.png' %}" /><span>브이데니에</span></button>
+          <a href="http://www.vdenie.co.kr/" target="_blank">
+            <button class="btn btn-vdenie"><span>브이데니에</span></button>
           </a>
           <a href="#" target="_blank">
-            <button class="btn btn-sungnamvallet"><img src="{% static 'img/icon_instagram.png' %}" /><span>성남시티발레단</span></button>
+            <button class="btn btn-sungnamvallet"><span>성남시티발레단</span></button>
           </a>
         </div>
         <!-- <div class="community-title">커뮤니티</div>
@@ -918,27 +917,36 @@
     moveToScroll(sectionScrollInfo[$(this).data("section-class")]);
   });
 
-  // // 네이버 지도 출력
-  // var map = new naver.maps.Map('map');
-  // var myaddr = new naver.maps.Point(127.1120501, 37.3975112);
-  // map.setCenter(myaddr);
-  // // 마커 표시
-  // var marker = new naver.maps.Marker({
-  //   position: myaddr,
-  //   map: map
-  // });
-  // // 마커 클릭 이벤트 처리
-  // naver.maps.Event.addListener(marker, "click", function(e) {
-  //   if (infowindow.getMap()) {
-  //       infowindow.close();
-  //   } else {
-  //       infowindow.open(map, marker);
-  //   }
-  // });
-  // // 마크 클릭시 인포윈도우 오픈
-  // var infowindow = new naver.maps.InfoWindow({
-  //     content: '<div class="inmap"><h4>예종 플리에 발레</h4><div class="location-title">주소</div><div class="location-text">경기도 성남시 분당구 삼평동 660 골드타워 4층</div><a href="#" class="btn btn-info">지도 전체 화면</a><div class="location-title">연락처</div><div class="location-text">031-8017-8651</div></div>'
-  // });
+  // 네이버 지도 출력
+  var map = new naver.maps.Map('map');
+  var myaddr = new naver.maps.Point(127.1120501, 37.3975112);
+  map.setCenter(myaddr);
+  // 마커 표시
+  var marker = new naver.maps.Marker({
+    position: myaddr,
+    map: map
+  });
+  // 마커 클릭 이벤트 처리
+  naver.maps.Event.addListener(marker, "click", function(e) {
+    if (infowindow.getMap()) {
+        infowindow.close();
+    } else {
+        infowindow.open(map, marker);
+    }
+  });
+  // 마크 클릭시 인포윈도우 오픈
+  var infowindow = new naver.maps.InfoWindow({
+      content: '<div class="inmap"><h4>예종 플리에 발레</h4><div class="location-title">주소</div><div class="location-text">경기도 성남시 분당구 삼평동 660 골드타워 4층</div><a href="#" class="btn btn-info">지도 전체 화면</a><div class="location-title">연락처</div><div class="location-text">031-8017-8651</div></div>'
+  });
+  $(".map-mask").mouseover(function() {
+    $(this).css("opacity", 1);
+  });
+  $(".map-mask").mouseout(function() {
+    $(this).css("opacity", 0);
+  });
+  function hideMapMask() {
+    $(".map-mask").hide();
+  }
   
   $(document).ready(function() {
     $(window).scroll(onScrollFunc);
