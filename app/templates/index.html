@@ -563,10 +563,10 @@
         <div class="community-text">오후 2:30-8:00 (월~금)</div>
         <div class="community-title">공지사항/상담실 바로가기</div>
         <div class="buttons">
-          <a href="https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=1%26search.boardtype=L" target="_blank">
+          <a href="javascript:moveToNotice();">
             <button class="btn btn-notice">공지사항</button>
           </a>
-          <a href="https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=21%26search.boardtype=Q" target="_blank">
+          <a href="javascript:moveToCS();">
             <button class="btn btn-cs">온라인 상담실</button>
           </a>
         </div>
@@ -814,7 +814,7 @@
 
   // 모바일 시간표에서는 횡으로 중간쯤 pre scroll
   if (isMobile) {
-    var preScrolled = $(".timetable-times .col-time").eq(0).outerWidth() * 4 - 20;
+    var preScrolled = $(".timetable-times .col-time").eq(0).outerWidth() * 4.5;
     $(".timetable-times-wrap").scrollLeft(preScrolled);
     $(".timetable-body-wrap").scrollLeft(preScrolled);
   } 
@@ -945,6 +945,20 @@
   });
   function hideMapMask() {
     $(".map-mask").hide();
+  }
+  function moveToNotice() {
+    if (isMobile) {
+      window.open("https://m.cafe.naver.com/ArticleList.nhn?search.clubid=27741841&search.menuid=1&search.boardtype=L", "_blank");
+    } else {
+      window.open("https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=1%26search.boardtype=L", "_blank");
+    }
+  }
+  function moveToCS() {
+    if (isMobile) {
+      window.open("https://m.cafe.naver.com/ArticleList.nhn?search.clubid=27741841&search.menuid=21&search.boardtype=Q", "_blank");
+    } else {
+      window.open("https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=21%26search.boardtype=Q", "_blank");
+    }
   }
   
   $(document).ready(function() {
