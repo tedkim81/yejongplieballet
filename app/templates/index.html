@@ -449,7 +449,7 @@
           <div class="about-text-2">발레리나를 꿈꾸는 어린 학생들의 기초과정부터 예술학교를 지망하는 전공 학생들의 심화된 학습 그리고 클래식 발레를 통한 체형교정 및 다이어트 효과를 볼 수 있는 성인반까지 클래스가 다른 교육을 경험해 보세요~!</div>
           <br>
           <div class="btn-about-more">
-            <a href="https://m.cafe.naver.com/yejongplie/293" target="_blank" class="btn btn-default-width">예종플리에 발레아카데미 소개 더보기</a>
+            <a href="javascript:moveToIntro();" class="btn btn-default-width">예종플리에 발레아카데미 소개 더보기</a>
           </div>
         </div>
         <div class="clear"></div>
@@ -470,7 +470,7 @@
         </div>
       {% endfor %}
         <div class="text-right">
-          <a href="https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=23%26search.boardtype=I" target="_blank" class="btn btn-default-width">강사 정보 더보기</a>
+          <a href="javascript:moveToTeachers();" class="btn btn-default-width">강사 정보 더보기</a>
         </div>
       </div>
     </div>
@@ -543,7 +543,7 @@
         <div class="location-text">판교역,낙생육교,현대백화점 정류장 : (직행) 1002, 1005, 1005-1, 1150, 1151, 1241, 1500-2, 3330, 3500, 5500-1, 6003, 7007-1, 8106, 9000, 9000-2, 9300, 9507, G8110, 9401 (일반) 103, 340, 340-1</div>
         <div class="location-title">자가용 / 도보</div>
         <div class="location-text">판교역 부근, 아비뉴프랑 건너편의 메디피움 병원 바로 뒷 건물</div>
-        <div class="location-text">학원건물 내 주차 가능 (1시간 무료)</div>
+        <div class="location-text">학원건물 내 주차 가능</div>
         <div class="location-title">약도 / 지도</div>
         <img class="subway-img" src="{% static 'img/address_subway.jpg' %}" />
         <img class="address-img" src="{% static 'img/address_street.jpg' %}" />
@@ -946,9 +946,23 @@
   function hideMapMask() {
     $(".map-mask").hide();
   }
+  function moveToIntro() {
+    if (isMobile) {
+      window.open("https://m.cafe.naver.com/yejongplie/293", "_blank");
+    } else {
+      window.open("https://cafe.naver.com/yejongplie/293?viewType=pc", "_blank");
+    }
+  }
+  function moveToTeachers() {
+    if (isMobile) {
+      window.open("https://m.cafe.naver.com/ArticleList.nhn?search.clubid=27741841&search.menuid=23&search.boardtype=I", "_blank");
+    } else {
+      window.open("https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=23%26search.boardtype=I", "_blank");
+    }
+  }
   function moveToNotice() {
     if (isMobile) {
-      window.open("https://m.cafe.naver.com/ArticleList.nhn?search.clubid=27741841&search.menuid=1&search.boardtype=L", "_blank");
+      window.open("https://m.cafe.naver.com/NoticeList.nhn?search.clubid=27741841&search.menuid=1", "_blank");
     } else {
       window.open("https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=1%26search.boardtype=L", "_blank");
     }

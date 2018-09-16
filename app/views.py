@@ -16,9 +16,16 @@ class IndexView(TemplateView):
         context['commoninfo'] = CommonInfo.objects.first()
         gallerylist = Gallery.objects.all()
         galleries = [[],[],[]]
-        i = 0
+        galleries_size = [0, 0, 0]
+        for i in range(gallerylist.count()):
+            galleries_size[i%3] += 1
+        i1 = 0
+        i2 = 0
         for gallery in gallerylist:
-            galleries[i].append(gallery)
-            i = (i+1) % 3
+            galleries[i1].append(gallery)
+            i2 += 1
+            if i2 == galleries_size[i1]:
+                i1 += 1
+                i2 = 0
         context['galleries'] = galleries
         return context
