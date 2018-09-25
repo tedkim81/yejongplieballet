@@ -47,11 +47,28 @@ class TimetableAdmin(admin.ModelAdmin):
 class CommonInfoAdmin(admin.ModelAdmin):
     list_display = [
         'id',
-        'community_text',
-        'naver_text',
-        'instagram_text',
-        'facebook_text',
-        'timetable_text'
+        'about_text',
+        'about_link_m',
+        'about_link_pc',
+        'teachers_link_m',
+        'teachers_link_pc',
+        'timetable_text',
+        'class_link_1',
+        'class_link_2',
+        'class_link_3',
+        'location_text',
+        'contact_text',
+        'notice_link_m',
+        'notice_link_pc',
+        'cs_link_m',
+        'cs_link_pc',
+        'navercafe_link',
+        'instagram_link',
+        'facebook_link',
+        'vdenie_link',
+        'sungnamvallet_link',
+        'foreigner_text',
+        'footer_text'
     ]
 
 class GalleryAdmin(admin.ModelAdmin):

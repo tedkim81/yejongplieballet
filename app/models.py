@@ -53,11 +53,28 @@ class Timetable(models.Model):
 
 class CommonInfo(models.Model):
     """ 일반 정보들 """
-    community_text = models.TextField(u"커뮤니티 텍스트")
-    naver_text = models.TextField(u"네이버카페 텍스트")
-    instagram_text = models.TextField(u"인스타그램 텍스트")
-    facebook_text = models.TextField(u"페이스북 텍스트")
-    timetable_text = models.TextField(u"수업시간표 텍스트")
+    about_text = models.TextField(u"ABOUT 텍스트", blank=True, null=True)
+    about_link_m = models.URLField(u"학원소개더보기 링크(모바일)", max_length=500, blank=True, null=True)
+    about_link_pc = models.URLField(u"학원소개더보기 링크(PC)", max_length=500, blank=True, null=True)
+    teachers_link_m = models.URLField(u"강사소개더보기 링크(모바일)", max_length=500, blank=True, null=True)
+    teachers_link_pc = models.URLField(u"강사소개더보기 링크(PC)", max_length=500, blank=True, null=True)
+    timetable_text = models.TextField(u"수업시간표 텍스트", blank=True, null=True)
+    class_link_1 = models.URLField(u"전공반 안내링크", max_length=500, blank=True, null=True)
+    class_link_2 = models.URLField(u"어린이취미반 안내링크", max_length=500, blank=True, null=True)
+    class_link_3 = models.URLField(u"성인취미반 안내링크", max_length=500, blank=True, null=True)
+    location_text = models.TextField(u"LOCATION 텍스트", blank=True, null=True)
+    contact_text = models.TextField(u"CONTACT 텍스트", blank=True, null=True)
+    notice_link_m = models.URLField(u"공지사항 링크(모바일)", max_length=500, blank=True, null=True)
+    notice_link_pc = models.URLField(u"공지사항 링크(PC)", max_length=500, blank=True, null=True)
+    cs_link_m = models.URLField(u"온라인상담실 링크(모바일)", max_length=500, blank=True, null=True)
+    cs_link_pc = models.URLField(u"온라인상담실 링크(PC)", max_length=500, blank=True, null=True)
+    navercafe_link = models.URLField(u"네이버카페 링크", max_length=500, blank=True, null=True)
+    instagram_link = models.URLField(u"인스타그램 링크", max_length=500, blank=True, null=True)
+    facebook_link = models.URLField(u"페이스북 링크", max_length=500, blank=True, null=True)
+    vdenie_link = models.URLField(u"브이데니에 링크", max_length=500, blank=True, null=True)
+    sungnamvallet_link = models.URLField(u"성남시티발레단 링크", max_length=500, blank=True, null=True)
+    foreigner_text = models.TextField(u"FOREIGNER 텍스트", blank=True, null=True)
+    footer_text = models.TextField(u"FOOTER 텍스트", blank=True, null=True)
 
 class Gallery(models.Model):
     """ 사진 갤러리 """

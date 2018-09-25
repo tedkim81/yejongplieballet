@@ -17,6 +17,9 @@
   html, body {
     height: 100%;
   }
+  .anchor-style {
+    text-decoration: none;
+  }
   .no-margin {
     margin: 0;
   }
@@ -41,9 +44,6 @@
   .btn:hover {
     color: #eeeeee;
   }
-  /*.btn span {
-    padding-right: 30px;
-  }*/
   .btn-default-width {
     width: 300px;
   }
@@ -61,9 +61,7 @@
   .section-title-gallery { z-index: 500; } .gallery { z-index: 499; }
   .section-title-foreigner { z-index: 600; } .foreigner-wrap { z-index: 599; }
   .section-container {
-    overflow-y: hidden;
-    position: relative;
-    background-color: white;
+    overflow-y: hidden; position: relative; background-color: white;
   }
   .teacher-info {
     padding-top: 15px; padding-bottom: 15px; position: relative;
@@ -81,13 +79,10 @@
     padding-left: 115px;
   }
   .teacher-text div {
-    font-size: 15px;
-    font-weight: bold;
-    color: #ab9375;
+    font-size: 15px; font-weight: bold; color: #ab9375;
   }
   .teacher-text ul {
-    list-style: none;
-    padding-left: 0;
+    list-style: none; padding-left: 0;
   }
   .bi-layer {
     position: fixed; left: 0; top: 0; width: 100%; height: 100%; display: none; z-index: 1000; border-bottom: 1px solid #ddd;
@@ -156,7 +151,7 @@
     position: relative; height: 840px;
   }
   .timetable-times-wrap {
-    width: 100%; height: 40px; background-color: white; overflow-x: auto;
+    width: 100%; height: 40px; background-color: white; -ms-overflow-style: none; overflow-x: auto;
   }
   .timetable-times-wrap::-webkit-scrollbar {
     display: none;
@@ -183,7 +178,7 @@
     width: 50px; height: 120px; border-right: 1px solid #ddd; border-bottom: 1px solid #ddd; text-align: center; line-height: 120px; vertical-align: middle; background-color: white;
   }
   .timetable-body-wrap {
-    width: 100%; position: absolute; padding-left: 50px; overflow-x: auto;
+    width: 100%; position: absolute; padding-left: 50px; -ms-overflow-style: none; overflow-x: auto;
   }
   .timetable-body {
     width: 770px;
@@ -194,12 +189,9 @@
   .timetable-body div div {
     display: inline-block; width: 100px; height: 40px; text-align: center; padding-top: 14px; font-size: 11px; line-height: 11px; position: absolute; top: 0;
   }
-  /*.timetable-notice {
-    padding: 15px 15px 15px 30px; margin: 0; background-color: white;
+  .timetable-notice {
+    padding: 15px 15px 0 30px; margin: 0; background-color: white;
   }
-  .btn-timetable-more {
-    padding-bottom: 30px; text-align: center;
-  }*/
   .timetable-more {
     padding: 30px 16px;
   }
@@ -253,44 +245,32 @@
     height: 40px; padding: 0 10px;
   }
   .community .col-xs-12 {
-    margin-top: 15px;
-    padding: 0;
+    margin-top: 15px; padding: 0;
   }
   .community .button-box {
-    border: 1px solid #ddd;
-    padding: 15px;
+    border: 1px solid #ddd; padding: 15px;
   }
   .community .buttons .btn {
-    height: 42px; color: white; margin-top: 10px; margin-right: 5px;
+    color: white; margin-top: 10px; margin-right: 5px;
   }
   .btn-naver {
     background-color: #1EC545;
   }
   .btn-naver img {
-    width: 16px;
-    margin-right: 5px;
+    width: 14px; margin-top: -2px; margin-right: 5px;
   }
   .btn-instagram {
     background-color: #833ab4;
   }
   .btn-instagram img {
-    width: 26px;
+    width: 20px;
     margin-right: 5px;
   }
   .btn-facebook {
-    padding-left: 5px;
-    background-color: #4468B0;
+    padding-left: 5px; background-color: #4468B0;
   }
   .btn-facebook img {
-    width: 30px;
-  }
-  .btn-vdenie img {
-    width: 16px;
-    margin-right: 10px;
-  }
-  .btn-sungnamvallet img {
-    width: 26px;
-    margin-right: 10px;
+    width: 22px; margin-top: -4px;
   }
   .gallery {
     width: 100%; padding-bottom: 30px; position: relative; clear: both; background-color: white;
@@ -299,19 +279,16 @@
     padding: 0 15px;
   }
   .gallery .col-xs-12 {
-    padding: 0;
-    margin: 0;
+    padding: 0; margin: 0;
   }
   .gallery img {
-    width: 100%;
-    margin-top: 15px;
+    width: 100%; margin-top: 15px;
   }
   .foreigner-wrap {
-    padding-top: 15px;
+    padding-top: 15px; position: relative; clear: both; background-color: white;
   }
   .foreigner {
-    margin-bottom: 30px;
-    font-size: 16px;
+    margin-bottom: 30px; font-size: 16px;
   }
   .footer {
     color: white; background-color: #404042; padding-top: 20px; padding-bottom: 20px; margin-top: 30px;
@@ -327,21 +304,10 @@
       width: 100%; text-align: right; position: absolute; top: 0; z-index: 1100; background-color: transparent; display: block;
     }
     .btn-menus div {
-      display: inline-block;
-      height: 50px;
-      text-align: center;
-      line-height: 50px;
-      vertical-align: middle;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      color: #555;
-      margin: 0 10px;
-      border-bottom: none;
+      display: inline-block; height: 50px; text-align: center; line-height: 50px; vertical-align: middle; cursor: pointer; font-size: 16px; font-weight: bold; color: #555; margin: 0 10px; border-bottom: none;
     }
     .cont-area {
-      width: 1040px;
-      margin: auto;
+      width: 1040px; margin: auto;
     }
     .about-img {
       width: 50%; float: left;
@@ -383,8 +349,7 @@
       width: 300px; margin-right: 10px;
     }
     .timetable-times-wrap, .timetable-table {
-      border-left: 1px solid #ddd;
-      border-right: 1px solid #ddd;
+      border-left: 1px solid #ddd; border-right: 1px solid #ddd;
     }
     .location .subway-img {
       width: 330px; height: 330px; margin-right: 10px; float: left;
@@ -396,12 +361,10 @@
       width: 330px; height: 330px; margin-top: 10px; display: inline-block;
     }
     .community .col-xs-12 {
-      width: 33%;
-      margin-top: 0;
+      width: 33%; margin-top: 0;
     }
     .community .button-box {
-      margin-left: 7px;
-      margin-right: 7px;
+      margin-left: 7px; margin-right: 7px;
     }
     .community .community-text {
       font-size: 16px;
@@ -413,21 +376,14 @@
       display: none;
     }
     .gallery .col-xs-12 {
-      width: 33.3%;
-      padding: 0 7px;
+      width: 33.3%; padding: 0 7px;
     }
     .footer .container {
-      padding-left: 0;
-      padding-right: 0;
-      margin-left: 0;
-      margin-right: 0;
-      width: 1040px;
-      margin: auto;
+      padding-left: 0; padding-right: 0; margin-left: 0; margin-right: 0; width: 1040px; margin: auto;
     }
   }
   .btn-menus .active {
-    color: #927f67;
-    border-bottom: 4px solid #927f67;
+    color: #927f67; border-bottom: 4px solid #927f67;
   }
   </style>
 </head>
@@ -442,12 +398,7 @@
           <img src="{% static 'img/about_img1.jpg' %}" />
         </div>
         <div class="about-text">
-          <div class="about-text-1">Welcome to<br>Yejongplie Ballet Academy !</div>
-          <br>
-          <div class="about-text-2">예종플리에 발레아카데미를 방문해 주셔서 감사합니다.</div>
-          <br>
-          <div class="about-text-2">발레리나를 꿈꾸는 어린 학생들의 기초과정부터 예술학교를 지망하는 전공 학생들의 심화된 학습 그리고 클래식 발레를 통한 체형교정 및 다이어트 효과를 볼 수 있는 성인반까지 클래스가 다른 교육을 경험해 보세요~!</div>
-          <br>
+          {{ commoninfo.about_text|safe }}
           <div class="btn-about-more">
             <a href="javascript:moveToIntro();" class="btn btn-default-width">예종플리에 발레아카데미 소개 더보기</a>
           </div>
@@ -511,18 +462,15 @@
             <div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div><div>일</div>
           </div>
         </div>
-        <!-- <ul class="timetable-notice">
+        <ul class="timetable-notice">
           {{ commoninfo.timetable_text|safe }}
         </ul>
-        <div class="btn-timetable-more">
-          <a href="#" target="_blank" class="btn btn-default-width">수업 정보 더보기</a>
-        </div> -->
         <div class="timetable-more">
           <div class="timetable-more-title">수업 내용 및 등록 안내 바로가기</div>
           <div class="timetable-more-btns">
-            <a href="https://cafe.naver.com/yejongplie/295" target="_blank" class="btn">전공반</a>
-            <a href="https://cafe.naver.com/yejongplie/296" target="_blank" class="btn">어린이 취미반</a>
-            <a href="https://cafe.naver.com/yejongplie/297" target="_blank" class="btn">성인 취미반</a>
+            <a href="{{ commoninfo.class_link_1 }}" target="_blank" class="btn">전공반</a>
+            <a href="{{ commoninfo.class_link_2 }}" target="_blank" class="btn">어린이 취미반</a>
+            <a href="{{ commoninfo.class_link_3 }}" target="_blank" class="btn">성인 취미반</a>
           </div>
         </div>
       </div>
@@ -530,20 +478,7 @@
     <div class="section-container section-location">
       <div class="section-title section-title-location">LOCATION</div>
       <div class="cont-area location">
-        <div class="location-title">주소</div>
-        <div class="location-text">경기도 성남시 분당구 삼평동 660 골드타워 4층 예종플리에 발레아카데미</div>
-        <div class="location-text color-gray">도로명 주소: 판교역로192번길 14-2 (우: 13524)</div>
-        <div class="location-title">지하철</div>
-        <div class="location-text">신분당선 또는 경강선 판교역 1번출구에서 테크노밸리방향(현대백화점 반대방향)으로 직진</div>
-        <div class="location-title">버스</div>
-        <div class="location-text">웰츠타워 정류장 : (직행) 1002, 4000, 6003, 9414 (일반) 260, 370, 5, 55</div>
-        <div class="location-text">판교역북편 정류장 : (직행) 9007 (공항) 5000 (일반) 380, 390 (마을) 32, 602-1, 602-2, 71, 72, 73, 74, 75, 812</div>
-        <div class="location-text">동안교 정류장 : (직행) 3000</div>
-        <div class="location-text">판교역동편 정류장 : (직행) 9007 (일반) 340 (마을) 602, 76</div>
-        <div class="location-text">판교역,낙생육교,현대백화점 정류장 : (직행) 1002, 1005, 1005-1, 1150, 1151, 1241, 1500-2, 3330, 3500, 5500-1, 6003, 7007-1, 8106, 9000, 9000-2, 9300, 9507, G8110, 9401 (일반) 103, 340, 340-1</div>
-        <div class="location-title">자가용 / 도보</div>
-        <div class="location-text">판교역 부근, 아비뉴프랑 건너편의 메디피움 병원 바로 뒷 건물</div>
-        <div class="location-text">학원건물 내 주차 가능</div>
+        {{ commoninfo.location_text|safe }}
         <div class="location-title">약도 / 지도</div>
         <img class="subway-img" src="{% static 'img/address_subway.jpg' %}" />
         <img class="address-img" src="{% static 'img/address_street.jpg' %}" />
@@ -556,79 +491,27 @@
     <div class="section-container section-community">
       <div class="section-title section-title-community">CONTACT/SNS</div>
       <div class="cont-area community container">
-        <div class="community-title">학원 전화번호</div>
-        <span class="community-text">031-8017-8651</span>
-        <a href="tel:03180178651" class="btn btn-phone">전화걸기</a>
-        <div class="community-title">상담시간</div>
-        <div class="community-text">오후 2:30-8:00 (월~금)</div>
+        {{ commoninfo.contact_text|safe }}
         <div class="community-title">공지사항/상담실 바로가기</div>
         <div class="buttons">
-          <a href="javascript:moveToNotice();">
-            <button class="btn btn-notice">공지사항</button>
-          </a>
-          <a href="javascript:moveToCS();">
-            <button class="btn btn-cs">온라인 상담실</button>
-          </a>
+          <a href="javascript:moveToNotice();" class="btn btn-notice">공지사항</a>
+          <a href="javascript:moveToCS();" class="btn btn-cs">온라인 상담실</a>
         </div>
         <div class="community-title">SNS 바로가기</div>
         <div class="buttons">
-          <a href="https://cafe.naver.com/yejongplie" target="_blank">
-            <button class="btn btn-naver"><img src="{% static 'img/icon_naver.png' %}" /><span>카페</span></button>
-          </a>
-          <a href="https://www.instagram.com/yejongplieballet/" target="_blank">
+          <a href="{{ commoninfo.navercafe_link }}" class="btn btn-naver" target="_blank"><img src="{% static 'img/icon_naver.png' %}" /><span>카페</span></a>
+          <a href="{{ commoninfo.instagram_link }}" target="_blank">
             <button class="btn btn-instagram"><img src="{% static 'img/icon_instagram.png' %}" /><span>인스타그램</span></button>
           </a>
-          <a href="https://www.facebook.com/yejongplieballet.academy/" target="_blank">
+          <a href="{{ commoninfo.facebook_link }}" target="_blank">
             <button class="btn btn-facebook"><img src="{% static 'img/icon_facebook.png' %}" /><span>페이스북</span></button>
           </a>
         </div>
         <div class="community-title">협력업체</div>
         <div class="buttons">
-          <a href="http://www.vdenie.co.kr/" target="_blank">
-            <button class="btn btn-vdenie"><span>브이데니에</span></button>
-          </a>
-          <a href="#" target="_blank">
-            <button class="btn btn-sungnamvallet"><span>성남시티발레단</span></button>
-          </a>
+          <a href="{{ commoninfo.vdenie_link }}" class="btn btn-vdenie" target="_blank">브이데니에</a>
+          <a href="{{ commoninfo.sungnamvallet_link }}" class="btn btn-sungnamvallet" target="_blank">성남시티발레단</a>
         </div>
-        <!-- <div class="community-title">커뮤니티</div>
-        <div class="community-text">{{ commoninfo.community_text }}</div>
-        <div class="buttons">
-          <div class="col-xs-12">
-            <div class="button-box">
-              <div>{{ commoninfo.naver_text }}</div>
-              <button class="btn btn-naver"><img src="{% static 'img/icon_naver.png' %}" /><span>네이버 카페로 이동하기</span></button>
-            </div>
-          </div>
-          <div class="col-xs-12">
-            <div class="button-box">
-              <div>{{ commoninfo.instagram_text }}</div>
-              <button class="btn btn-instagram"><img src="{% static 'img/icon_instagram.png' %}" /><span>인스타그램으로 이동하기</span></button>
-            </div>
-          </div>
-          <div class="col-xs-12">
-            <div class="button-box">
-              <div>{{ commoninfo.facebook_text }}</div>
-              <button class="btn btn-facebook"><img src="{% static 'img/icon_facebook.png' %}" /><span>페이스북으로 이동하기</span></button>
-            </div>
-          </div>
-        </div>
-        <div class="community-title">협력업체</div>
-        <div class="community-text">예종플리에 발레아카데미와 제휴 및 협력 관계에 있는 업체들입니다.</div>
-        <div class="buttons">
-          <div class="col-xs-12">
-            <div class="button-box">
-              <div>각종 발레용품을 저렴한 가격에 구매하실 수 있습니다.</div>
-              <button class="btn btn-vdenie"><img src="{% static 'img/icon_naver.png' %}" /><span>브이데니에로 이동하기</span></button>
-            </div>
-          </div>
-          <div class="col-xs-12">
-            <div class="button-box">
-              <div>학원 원장님들이 주체가 되어 운영중인 성남시티발레단입니다.</div>
-              <button class="btn btn-sungnamvallet"><img src="{% static 'img/icon_instagram.png' %}" /><span>성남시티발레단 홈페이지</span></button>
-            </div>
-          </div>
-        </div> -->
       </div>
     </div>
     <div class="section-container section-gallery">
@@ -647,24 +530,11 @@
       <div class="section-title section-title-foreigner">FOREIGNER</div>
       <div class="foreigner-wrap">
         <div class="cont-area foreigner container">
-          Hi, guys!! <br>
-          This is the world best ballet institution! <br>
-          Oh, my god, guys. This is real things! <br>
-          Please, beleave me. <br>
-          This is fantastic and amazing. <br>
-          Do you know ballet? The ballet is art. <br>
-          Do you want to know more information about this fantastic institution? <br>
-          Please email to me. <br>
-          <br>
-          The email address is <a href="mailto:unkyu@naver.com">unkyu@naver.com</a><br>
-          <br>
-          Thank you!!
+          {{ commoninfo.foreigner_text|safe }}
         </div>
         <div class="footer">
           <div class="container">
-            <div class="footer-text">예종 플리에 발레 학원 (Yejong Plie Ballet)</div>
-            <div class="footer-text">대표자: 전효정 | 주소: 경기도 성남시 분당구 삼평동 660 골드타워 4층 | 대표 전화: 031-8017-8651 | FAX: 031-8017-8652 | 사업자 등록번호: 144-90-44314</div>
-            <div class="footer-text">Copyright (c) 2018. Yejong Plie Ballet All Rights Reserved</div>
+            {{ commoninfo.footer_text|safe }}
           </div>
         </div>
       </div>
@@ -837,8 +707,8 @@
   var classinfo_intros = {};
   var classinfo_color = {};
   {% for ci in classinfos %}
-  classinfo_intros["{{ ci.id }}"] = `{{ ci.introduce }}`;
-  classinfo_color["{{ ci.id }}"] = `{{ ci.color }}`;
+  classinfo_intros["{{ ci.id }}"] = "{{ ci.introduce|linebreaks }}";
+  classinfo_color["{{ ci.id }}"] = "{{ ci.color }}";
   {% endfor %}
 
   function convertTimeString(raw_time) {
@@ -925,18 +795,6 @@
     position: myaddr,
     map: map
   });
-  // 마커 클릭 이벤트 처리
-  naver.maps.Event.addListener(marker, "click", function(e) {
-    if (infowindow.getMap()) {
-        infowindow.close();
-    } else {
-        infowindow.open(map, marker);
-    }
-  });
-  // 마크 클릭시 인포윈도우 오픈
-  var infowindow = new naver.maps.InfoWindow({
-      content: '<div class="inmap"><h4>예종 플리에 발레</h4><div class="location-title">주소</div><div class="location-text">경기도 성남시 분당구 삼평동 660 골드타워 4층</div><a href="#" class="btn btn-info">지도 전체 화면</a><div class="location-title">연락처</div><div class="location-text">031-8017-8651</div></div>'
-  });
   $(".map-mask").mouseover(function() {
     $(this).css("opacity", 1);
   });
@@ -948,38 +806,40 @@
   }
   function moveToIntro() {
     if (isMobile) {
-      window.open("https://m.cafe.naver.com/yejongplie/293", "_blank");
+      window.open("{{ commoninfo.about_link_m }}", "_blank");
     } else {
-      window.open("https://cafe.naver.com/yejongplie/293?viewType=pc", "_blank");
+      window.open("{{ commoninfo.about_link_pc }}", "_blank");
     }
   }
   function moveToTeachers() {
     if (isMobile) {
-      window.open("https://m.cafe.naver.com/ArticleList.nhn?search.clubid=27741841&search.menuid=23&search.boardtype=I", "_blank");
+      window.open("{{ commoninfo.teachers_link_m }}", "_blank");
     } else {
-      window.open("https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=23%26search.boardtype=I", "_blank");
+      window.open("{{ commoninfo.teachers_link_pc }}", "_blank");
     }
   }
   function moveToNotice() {
     if (isMobile) {
-      window.open("https://m.cafe.naver.com/NoticeList.nhn?search.clubid=27741841&search.menuid=1", "_blank");
+      window.open("{{ commoninfo.notice_link_m }}", "_blank");
     } else {
-      window.open("https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=1%26search.boardtype=L", "_blank");
+      window.open("{{ commoninfo.notice_link_pc }}", "_blank");
     }
   }
   function moveToCS() {
     if (isMobile) {
-      window.open("https://m.cafe.naver.com/ArticleList.nhn?search.clubid=27741841&search.menuid=21&search.boardtype=Q", "_blank");
+      window.open("{{ commoninfo.cs_link_m }}", "_blank");
     } else {
-      window.open("https://cafe.naver.com/yejongplie?iframe_url=/ArticleList.nhn%3Fsearch.clubid=27741841%26search.menuid=21%26search.boardtype=Q", "_blank");
+      window.open("{{ commoninfo.cs_link_pc }}", "_blank");
     }
   }
   
   $(document).ready(function() {
-    classNames.forEach(function(classNameSet) {
-      sectionScrollInfo[classNameSet[0]] = tmpScrollTop;
-      tmpScrollTop += $(classNameSet[0]).height() + parseInt($(classNameSet[1]).css("height"));
-    });
+    setTimeout(function(){
+      classNames.forEach(function(classNameSet) {
+        sectionScrollInfo[classNameSet[0]] = tmpScrollTop;
+        tmpScrollTop += $(classNameSet[0]).height() + parseInt($(classNameSet[1]).css("height"));
+      });
+    }, 1000);
     $(window).scroll(onScrollFunc);
   });
   </script>
