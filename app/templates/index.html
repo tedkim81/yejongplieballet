@@ -468,9 +468,9 @@
         <div class="timetable-more">
           <div class="timetable-more-title">수업 내용 및 등록 안내 바로가기</div>
           <div class="timetable-more-btns">
-            <a href="{{ commoninfo.class_link_1 }}" target="_blank" class="btn">전공반</a>
-            <a href="{{ commoninfo.class_link_2 }}" target="_blank" class="btn">어린이 취미반</a>
-            <a href="{{ commoninfo.class_link_3 }}" target="_blank" class="btn">성인 취미반</a>
+            <a href="{{ commoninfo.class_link_1|safe }}" target="_blank" class="btn">전공반</a>
+            <a href="{{ commoninfo.class_link_2|safe }}" target="_blank" class="btn">어린이 취미반</a>
+            <a href="{{ commoninfo.class_link_3|safe }}" target="_blank" class="btn">성인 취미반</a>
           </div>
         </div>
       </div>
@@ -499,18 +499,18 @@
         </div>
         <div class="community-title">SNS 바로가기</div>
         <div class="buttons">
-          <a href="{{ commoninfo.navercafe_link }}" class="btn btn-naver" target="_blank"><img src="{% static 'img/icon_naver.png' %}" /><span>카페</span></a>
-          <a href="{{ commoninfo.instagram_link }}" target="_blank">
+          <a href="{{ commoninfo.navercafe_link|safe }}" class="btn btn-naver" target="_blank"><img src="{% static 'img/icon_naver.png' %}" /><span>카페</span></a>
+          <a href="{{ commoninfo.instagram_link|safe }}" target="_blank">
             <button class="btn btn-instagram"><img src="{% static 'img/icon_instagram.png' %}" /><span>인스타그램</span></button>
           </a>
-          <a href="{{ commoninfo.facebook_link }}" target="_blank">
+          <a href="{{ commoninfo.facebook_link|safe }}" target="_blank">
             <button class="btn btn-facebook"><img src="{% static 'img/icon_facebook.png' %}" /><span>페이스북</span></button>
           </a>
         </div>
         <div class="community-title">협력업체</div>
         <div class="buttons">
-          <a href="{{ commoninfo.vdenie_link }}" class="btn btn-vdenie" target="_blank">브이데니에</a>
-          <a href="{{ commoninfo.sungnamvallet_link }}" class="btn btn-sungnamvallet" target="_blank">성남시티발레단</a>
+          <a href="{{ commoninfo.vdenie_link|safe }}" class="btn btn-vdenie" target="_blank">브이데니에</a>
+          <a href="{{ commoninfo.sungnamvallet_link|safe }}" class="btn btn-sungnamvallet" target="_blank">성남시티발레단</a>
         </div>
       </div>
     </div>
@@ -806,30 +806,30 @@
   }
   function moveToIntro() {
     if (isMobile) {
-      window.open("{{ commoninfo.about_link_m }}", "_blank");
+      window.open("{{ commoninfo.about_link_m|safe }}", "_blank");
     } else {
-      window.open("{{ commoninfo.about_link_pc }}", "_blank");
+      window.open("{{ commoninfo.about_link_pc|safe }}", "_blank");
     }
   }
   function moveToTeachers() {
     if (isMobile) {
-      window.open("{{ commoninfo.teachers_link_m }}", "_blank");
+      window.open("{{ commoninfo.teachers_link_m|safe }}", "_blank");
     } else {
-      window.open("{{ commoninfo.teachers_link_pc }}", "_blank");
+      window.open("{{ commoninfo.teachers_link_pc|safe }}", "_blank");
     }
   }
   function moveToNotice() {
     if (isMobile) {
-      window.open("{{ commoninfo.notice_link_m }}", "_blank");
+      window.open("{{ commoninfo.notice_link_m|safe }}", "_blank");
     } else {
-      window.open("{{ commoninfo.notice_link_pc }}", "_blank");
+      window.open("{{ commoninfo.notice_link_pc|safe }}", "_blank");
     }
   }
   function moveToCS() {
     if (isMobile) {
-      window.open("{{ commoninfo.cs_link_m }}", "_blank");
+      window.open("{{ commoninfo.cs_link_m|safe }}", "_blank");
     } else {
-      window.open("{{ commoninfo.cs_link_pc }}", "_blank");
+      window.open("{{ commoninfo.cs_link_pc|safe }}", "_blank");
     }
   }
   
