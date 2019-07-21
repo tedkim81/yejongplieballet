@@ -12,7 +12,6 @@
   <link rel="icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=PFk4_yg96tmkviyKL7rT&submodules=geocoder"></script>
   <style type="text/css">
   html, body {
     height: 100%;
@@ -674,7 +673,7 @@
 
   // 모바일 시간표에서는 횡으로 중간쯤 pre scroll
   if (isMobile) {
-    var preScrolled = $(".timetable-times .col-time").eq(0).outerWidth() * 4.5;
+    var preScrolled = $(".timetable-times .col-time").eq(0).outerWidth() * 5.0;
     $(".timetable-times-wrap").scrollLeft(preScrolled);
     $(".timetable-body-wrap").scrollLeft(preScrolled);
   } 
@@ -711,7 +710,7 @@
     if (splited.length > 1 && splited[1] > 0) {
       minute = 6 * parseInt(splited[1]);
       if (minute >= 60) {
-        minute /= 10;
+        minute = Math.round(minute / 10);
       }
     }
     if (minute > 0) {
@@ -812,6 +811,7 @@
       });
     }, 1000);
     $(window).scroll(onScrollFunc);
+    onScrollFunc();
   });
   </script>
 </body>
