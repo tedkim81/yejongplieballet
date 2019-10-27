@@ -3,6 +3,9 @@ import os
 from django.db import models
 from app import configs
 
+def intro_upload_path(instance, filename):
+    return os.path.join('intro', filename)
+
 def profile_upload_path(instance, filename):
     return os.path.join('profile', filename)
 
@@ -53,6 +56,7 @@ class Timetable(models.Model):
 
 class CommonInfo(models.Model):
     """ 일반 정보들 """
+    intro_image = models.FileField(u"첫화면배경이미지", blank=True, null=True, upload_to=intro_upload_path)
     about_text = models.TextField(u"ABOUT 텍스트", blank=True, null=True)
     about_link_m = models.URLField(u"학원소개더보기 링크(모바일)", max_length=500, blank=True, null=True)
     about_link_pc = models.URLField(u"학원소개더보기 링크(PC)", max_length=500, blank=True, null=True)

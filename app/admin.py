@@ -47,6 +47,7 @@ class TimetableAdmin(admin.ModelAdmin):
 class CommonInfoAdmin(admin.ModelAdmin):
     list_display = [
         'id',
+        'intro_image',
         'about_text',
         'about_link_m',
         'about_link_pc',
