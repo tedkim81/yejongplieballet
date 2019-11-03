@@ -76,7 +76,8 @@ class GalleryAdmin(admin.ModelAdmin):
     list_display = [
         'id',
         'get_photo',
-        'display_order'
+        'display_order',
+        'display_order_m'
     ]
 
     def get_photo(self, obj):

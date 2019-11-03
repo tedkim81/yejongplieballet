@@ -84,7 +84,5 @@ class Gallery(models.Model):
     """ 사진 갤러리 """
     photo = models.FileField(u"사진", upload_to=gallery_upload_path)
     display_order = models.PositiveIntegerField(u"노출순서", default=0)
+    display_order_m = models.PositiveIntegerField(u"노출순서(모바일)", default=0)
     pub_date = models.DateTimeField(u"등록일", auto_now_add=True)
-
-    class Meta:
-        ordering = ['display_order']
