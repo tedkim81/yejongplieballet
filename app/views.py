@@ -14,11 +14,10 @@ class IndexView(TemplateView):
         context['timetables'] = Timetable.objects.all()
         context['classinfos'] = ClassInfo.objects.all()
         context['commoninfo'] = CommonInfo.objects.first()
-        gallerylist = Gallery.objects.all()
         if self.request.user_agent.is_mobile:
-            gallerylist.order_by('display_order_m')
+            gallerylist = Gallery.objects.all().order_by('display_order_m')
         else:
-            gallerylist.order_by('display_order')
+            gallerylist = Gallery.objects.all().order_by('display_order')
         galleries = [[],[],[]]
         galleries_size = [0, 0, 0]
         for i in range(gallerylist.count()):
