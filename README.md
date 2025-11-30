@@ -1,4 +1,4 @@
-# Yejong Plie Ballet Homepage
+# Yejong Plie Ballet Homepage (Deprecated)
 
 ## What is Yejong Plie Ballet?
 * Yejong Plie Ballet is a ballet school where my wife is now attending.
